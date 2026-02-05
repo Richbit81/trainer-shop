@@ -114,12 +114,12 @@ export const TrainerCard: React.FC<TrainerCardProps> = ({ trainer }) => {
             src={`https://ordinals.com/content/${trainer.inscriptionId}`}
             title={trainer.name}
             className="border-0"
-            sandbox="allow-scripts allow-same-origin"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups"
             scrolling="no"
             style={{ 
               width: '100%', 
               height: '100%',
-              pointerEvents: 'none',
+              touchAction: 'auto',
             }}
           />
         </div>
