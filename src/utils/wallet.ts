@@ -13,9 +13,7 @@ declare global {
       on: (event: string, callback: (...args: any[]) => void) => void;
       removeListener: (event: string, callback: (...args: any[]) => void) => void;
     };
-    BitcoinProvider?: {
-      request: (method: string, params?: any) => Promise<any>;
-    };
+    BitcoinProvider?: any;
   }
 }
 
