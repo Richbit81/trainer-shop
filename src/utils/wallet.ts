@@ -168,9 +168,8 @@ export const sendBitcoinViaXverse = async (to: string, amountSats: number): Prom
     const satsConnect = await import('sats-connect');
     
     if (satsConnect && satsConnect.request) {
-      const response = await satsConnect.request('sendTransfer', {
+      const response: any = await satsConnect.request('sendTransfer', {
         recipients: [{ address: to, amount: amountSats }],
-        network: { type: 'Mainnet' }
       });
       
       if (response.status === 'success') {
@@ -179,7 +178,7 @@ export const sendBitcoinViaXverse = async (to: string, amountSats: number): Prom
       }
       
       if (response.error) {
-        throw new Error(response.error.message || 'Xverse payment failed');
+        throw new Error(response.error?.message || 'Xverse payment failed');
       }
     }
 
@@ -215,9 +214,8 @@ export const sendMultipleBitcoinPayments = async (
       const satsConnect = await import('sats-connect');
       
       if (satsConnect && satsConnect.request) {
-        const response = await satsConnect.request('sendTransfer', {
+        const response: any = await satsConnect.request('sendTransfer', {
           recipients: recipientsInSats,
-          network: { type: 'Mainnet' }
         });
         
         if (response.status === 'success') {
@@ -226,7 +224,7 @@ export const sendMultipleBitcoinPayments = async (
         }
         
         if (response.error) {
-          throw new Error(response.error.message || 'Xverse payment failed');
+          throw new Error(response.error?.message || 'Xverse payment failed');
         }
       }
 
