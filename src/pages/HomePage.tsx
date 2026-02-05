@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrainerItem } from '../types';
+import type { TrainerItem } from '../types';
 import { WalletConnect } from '../components/WalletConnect';
 import { TrainerCard } from '../components/TrainerCard';
 

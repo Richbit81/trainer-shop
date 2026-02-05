@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* Custom Styles für Trainer Shop */
 :root {
@@ -98,4 +96,18 @@ body {
 
 .pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Hide scrollbars in iframe previews */
+.aspect-square iframe {
+  overflow: hidden;
+}
+
+.aspect-square iframe::-webkit-scrollbar {
+  display: none;
+}
+
+.aspect-square {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-import { WalletType, WalletAccount, WalletState } from '../types';
+import type { WalletType, WalletAccount, WalletState } from '../types';
 import {
   isUnisatInstalled,
   isXverseInstalled,

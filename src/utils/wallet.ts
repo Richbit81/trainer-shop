@@ -1,4 +1,4 @@
-import { WalletAccount } from '../types';
+import type { WalletAccount } from '../types';
 
 declare global {
   interface Window {

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { TrainerItem, MintingStatus } from '../types';
+import type { TrainerItem, MintingStatus } from '../types';
 import { useWallet } from '../contexts/WalletContext';
 import { FeeRateSelector } from './FeeRateSelector';
 import { MintingProgress } from './MintingProgress';
@@ -90,20 +90,42 @@ export const TrainerCard: React.FC<TrainerCardProps> = ({ trainer }) => {
 
   return (
     <div className="glass-card overflow-hidden group hover:shadow-neon-glow transition-all duration-300">
-      {/* Preview Image */}
-      <div className="relative aspect-square bg-gradient-to-br from-deep-purple to-midnight overflow-hidden">
-        <iframe
-          src={`https://ordinals.com/content/${trainer.inscriptionId}`}
-          title={trainer.name}
-          className="w-full h-full border-0"
-          sandbox="allow-scripts allow-same-origin"
-        />
-        
-        {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+      {/* Preview Image - Square container with scaled iframe */}
+      <div 
+        className="relative bg-gradient-to-br from-deep-purple to-midnight overflow-hidden"
+        style={{ 
+          width: '100%',
+          paddingBottom: '100%', // Square aspect ratio
+        }}
+      >
+        {/* Iframe wrapper - macht iframe größer und skaliert runter */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width: '300%',
+            height: '300%',
+            transform: 'translate(-50%, -50%) scale(0.333)',
+            transformOrigin: 'center center',
+          }}
+        >
+          <iframe
+            src={`https://ordinals.com/content/${trainer.inscriptionId}`}
+            title={trainer.name}
+            className="border-0"
+            sandbox="allow-scripts allow-same-origin"
+            scrolling="no"
+            style={{ 
+              width: '100%', 
+              height: '100%',
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
         
         {/* Price Badge */}
-        <div className="absolute top-3 right-3 bg-gradient-pink-blue px-3 py-1 rounded-full">
+        <div className="absolute top-3 right-3 bg-gradient-to-r from-hot-pink to-dodger-blue px-3 py-1 rounded-full z-10">
           <span className="text-xs font-bold text-white">{formatSats(trainer.price)}</span>
         </div>
       </div>

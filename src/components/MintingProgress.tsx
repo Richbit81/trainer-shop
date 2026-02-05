@@ -1,5 +1,5 @@
 import React from 'react';
-import { MintingStatus } from '../types';
+import type { MintingStatus } from '../types';
 
 interface MintingProgressProps {
   status: MintingStatus;
