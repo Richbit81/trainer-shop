@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles für Trainer Shop */
+:root {
+  --hot-pink: #FF1493;
+  --light-pink: #FF69B4;
+  --neon-blue: #00BFFF;
+  --dodger-blue: #1E90FF;
+  --deep-purple: #1a0a2e;
+  --midnight: #0d0d1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--deep-purple) 0%, var(--midnight) 50%, #0a1628 100%);
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: white;
+}
+
+/* Glasmorphism Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 105, 180, 0.3);
+  box-shadow: 0 0 30px rgba(255, 20, 147, 0.2), 0 0 60px rgba(0, 191, 255, 0.1);
+}
+
+/* Gradient Button */
+.btn-gradient {
+  background: linear-gradient(135deg, var(--hot-pink) 0%, var(--dodger-blue) 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+}
+
+.btn-gradient:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Neon Text */
+.neon-text {
+  text-shadow: 0 0 10px var(--hot-pink), 0 0 20px var(--hot-pink), 0 0 40px var(--neon-blue);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--hot-pink), var(--dodger-blue));
+  border-radius: 4px;
+}
+
+/* Animation for loading */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 191, 255, 0.5);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
