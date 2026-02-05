@@ -13,7 +13,6 @@ declare global {
       on: (event: string, callback: (...args: any[]) => void) => void;
       removeListener: (event: string, callback: (...args: any[]) => void) => void;
     };
-    BitcoinProvider?: any;
   }
 }
 
@@ -24,7 +23,7 @@ export const isUnisatInstalled = (): boolean => {
 
 export const isXverseInstalled = (): boolean => {
   if (typeof window === 'undefined') return false;
-  return typeof window.BitcoinProvider !== 'undefined';
+  return typeof (window as any).BitcoinProvider !== 'undefined';
 };
 
 export const connectUnisat = async (): Promise<WalletAccount[]> => {
