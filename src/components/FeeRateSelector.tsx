@@ -78,37 +78,50 @@ export const FeeRateSelector: React.FC<FeeRateSelectorProps> = ({
           onClick={() => { onFeeRateChange(feeRates.economyFee); setCustomFeeRate(''); }}
           className={`px-2 py-2 text-[10px] font-bold rounded-lg border transition ${
             selectedFeeRate === feeRates.economyFee && !isCustom
-              ? 'bg-gradient-pink-blue text-white border-transparent'
+              ? 'bg-gradient-to-r from-hot-pink to-dodger-blue text-white border-transparent'
               : 'bg-white/5 text-gray-300 border-white/10 hover:border-hot-pink/50'
           }`}
         >
           Economy
           <div className="text-[9px] text-gray-400 mt-0.5">{feeRates.economyFee} sat/vB</div>
+          <div className="text-[8px] text-gray-500">~1h+</div>
         </button>
 
         <button
           onClick={() => { onFeeRateChange(feeRates.halfHourFee); setCustomFeeRate(''); }}
-          className={`px-2 py-2 text-[10px] font-bold rounded-lg border transition ${
+          className={`px-2 py-2 text-[10px] font-bold rounded-lg border transition relative ${
             selectedFeeRate === feeRates.halfHourFee && !isCustom
-              ? 'bg-gradient-pink-blue text-white border-transparent'
+              ? 'bg-gradient-to-r from-hot-pink to-dodger-blue text-white border-transparent'
               : 'bg-white/5 text-gray-300 border-white/10 hover:border-hot-pink/50'
           }`}
         >
-          Medium ✓
+          Medium
           <div className="text-[9px] text-gray-400 mt-0.5">{feeRates.halfHourFee} sat/vB</div>
+          <div className="text-[8px] text-gray-500">~30min</div>
+          {selectedFeeRate === feeRates.halfHourFee && !isCustom && (
+            <span className="absolute -top-1 -right-1 bg-white text-black text-[7px] px-1 rounded font-bold">✓</span>
+          )}
         </button>
 
         <button
           onClick={() => { onFeeRateChange(feeRates.fastestFee); setCustomFeeRate(''); }}
           className={`px-2 py-2 text-[10px] font-bold rounded-lg border transition ${
             selectedFeeRate === feeRates.fastestFee && !isCustom
-              ? 'bg-gradient-pink-blue text-white border-transparent'
+              ? 'bg-gradient-to-r from-hot-pink to-dodger-blue text-white border-transparent'
               : 'bg-white/5 text-gray-300 border-white/10 hover:border-hot-pink/50'
           }`}
         >
-          Fast
+          Fast 🔥
           <div className="text-[9px] text-gray-400 mt-0.5">{feeRates.fastestFee} sat/vB</div>
+          <div className="text-[8px] text-gray-500">~10min</div>
         </button>
+      </div>
+      
+      {/* Empfehlung */}
+      <div className="text-center">
+        <p className="text-[9px] text-gray-400">
+          💡 <span className="font-semibold">Recommended:</span> Medium ({feeRates.halfHourFee} sat/vB)
+        </p>
       </div>
 
       <div className="pt-2 border-t border-white/10">
