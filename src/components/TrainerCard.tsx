@@ -135,8 +135,11 @@ export const TrainerCard: React.FC<TrainerCardProps> = ({ trainer }) => {
         <h3 className="text-xl font-bold text-white mb-2 group-hover:text-hot-pink transition-colors">
           {trainer.name}
         </h3>
-        <p className="text-sm text-gray-400 mb-4 line-clamp-2">
+        <p className="text-sm text-gray-400 mb-2 line-clamp-2">
           {trainer.description}
+        </p>
+        <p className="text-xs text-gray-500 mb-4">
+          🎮 Playable with touch & keyboard arrow keys
         </p>
 
         {/* Mint Panel Toggle */}
