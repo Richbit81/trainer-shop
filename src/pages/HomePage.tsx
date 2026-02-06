@@ -44,11 +44,8 @@ export const HomePage: React.FC = () => {
           <img 
             src="/title-logo.png" 
             alt="Trainer Shop" 
-            className="max-w-md md:max-w-lg mx-auto mb-4"
+            className="max-w-[200px] md:max-w-[250px] mx-auto mb-6"
           />
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Trainer Series
-          </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             Get the trainer and become the master. The trainer series are fun, casual games meant to add a little fun to the chain. So don't take it too seriously!
           </p>
