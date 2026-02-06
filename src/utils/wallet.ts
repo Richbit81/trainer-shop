@@ -58,26 +58,36 @@ export const connectUnisat = async (): Promise<WalletAccount[]> => {
 };
 
 export const connectXverse = async (): Promise<WalletAccount[]> => {
+  console.log('[Xverse] Starting connection...');
+  
   if (!isXverseInstalled()) {
+    console.error('[Xverse] Not installed!');
     throw new Error('Xverse Wallet is not installed. Please install the Xverse browser extension.');
   }
 
   try {
+    console.log('[Xverse] Importing sats-connect...');
     let satsConnect: any;
     try {
       satsConnect = await import('sats-connect');
+      console.log('[Xverse] sats-connect imported:', satsConnect);
     } catch (importError: any) {
+      console.error('[Xverse] Failed to import sats-connect:', importError);
       throw new Error(`Failed to load sats-connect: ${importError.message}`);
     }
     
     if (!satsConnect || !satsConnect.request) {
+      console.error('[Xverse] sats-connect has no request function');
       throw new Error('sats-connect could not be loaded.');
     }
     
+    console.log('[Xverse] Calling wallet_connect...');
     const response = await satsConnect.request('wallet_connect', null);
+    console.log('[Xverse] Response:', response);
 
     if (response.status === 'success') {
       const addresses = response.result?.addresses || [];
+      console.log('[Xverse] Addresses:', addresses);
       
       if (!addresses || addresses.length === 0) {
         throw new Error('No addresses returned from Xverse Wallet');
@@ -108,14 +118,17 @@ export const connectXverse = async (): Promise<WalletAccount[]> => {
         throw new Error('No valid addresses found.');
       }
 
+      console.log('[Xverse] Connected! Accounts:', accounts);
       return accounts;
     } else {
+      console.error('[Xverse] Connection failed:', response);
       if (response.error?.code === 'USER_REJECTION') {
         throw new Error('Connection cancelled by user.');
       }
       throw new Error(response.error?.message || 'Failed to connect to Xverse Wallet');
     }
   } catch (error: any) {
+    console.error('[Xverse] Error:', error);
     if (error.message && (error.message.includes('User rejected') || error.message.includes('rejected'))) {
       throw new Error('Connection rejected. Please approve the connection request.');
     }
