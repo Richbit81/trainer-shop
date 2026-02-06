@@ -28,11 +28,20 @@ export const mintTrainerDelegate = async (
   walletType: 'unisat' | 'xverse',
   itemPrice: number // Price in sats
 ): Promise<MintResult> => {
-  console.log(`[MintingService] Creating delegate for ${itemName}`);
-  console.log(`[MintingService] Original: ${originalInscriptionId}`);
-  console.log(`[MintingService] Recipient: ${recipientAddress}`);
+  console.log(`[MintingService] ========== CREATING DELEGATE ==========`);
+  console.log(`[MintingService] Item: ${itemName}`);
+  console.log(`[MintingService] Original Inscription: ${originalInscriptionId}`);
+  console.log(`[MintingService] 🎯 RECIPIENT ADDRESS: ${recipientAddress}`);
+  console.log(`[MintingService] Is Taproot (bc1p): ${recipientAddress.startsWith('bc1p')}`);
   console.log(`[MintingService] Fee Rate: ${feeRate} sat/vB`);
   console.log(`[MintingService] Price: ${itemPrice} sats`);
+  
+  // Validate recipient is Taproot
+  if (!recipientAddress.startsWith('bc1p')) {
+    console.error(`[MintingService] ❌ ERROR: Recipient is NOT a Taproot address!`);
+    console.error(`[MintingService] Got: ${recipientAddress}`);
+    throw new Error(`Ordinals must be sent to a Taproot address (bc1p...). Got: ${recipientAddress.substring(0, 10)}...`);
+  }
 
   // Create delegate HTML content
   const delegateContent = {

@@ -28,20 +28,22 @@ export const WalletConnect: React.FC = () => {
   };
 
   if (walletState.connected) {
-    const displayAddress = walletState.accounts[0]?.address;
-    const shortAddress = displayAddress
-      ? `${displayAddress.substring(0, 6)}...${displayAddress.substring(displayAddress.length - 4)}`
-      : '';
+    // Find Ordinals (Taproot) and Payment addresses
+    const ordinalsAccount = walletState.accounts.find(acc => acc.purpose === 'ordinals' || acc.address.startsWith('bc1p'));
+    const paymentAccount = walletState.accounts.find(acc => acc.purpose === 'payment' || !acc.address.startsWith('bc1p'));
+    
+    const formatAddr = (addr: string) => `${addr.substring(0, 8)}...${addr.substring(addr.length - 4)}`;
+
+    console.log('[WalletConnect] Connected accounts:', walletState.accounts);
+    console.log('[WalletConnect] Ordinals account:', ordinalsAccount);
+    console.log('[WalletConnect] Payment account:', paymentAccount);
 
     return (
       <div className="glass-card p-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
-            <div>
-              <p className="text-xs text-gray-400">Connected via Xverse</p>
-              <p className="text-sm font-mono text-white">{shortAddress}</p>
-            </div>
+            <p className="text-xs text-gray-400">Connected via Xverse</p>
           </div>
           <button
             onClick={disconnect}
@@ -49,6 +51,27 @@ export const WalletConnect: React.FC = () => {
           >
             Disconnect
           </button>
+        </div>
+        
+        {/* Show both addresses */}
+        <div className="space-y-2 text-xs">
+          {ordinalsAccount && (
+            <div className="flex items-center justify-between bg-green-500/10 border border-green-500/30 rounded-lg px-3 py-2">
+              <span className="text-green-400 font-semibold">🎨 Ordinals (Taproot)</span>
+              <span className="font-mono text-white">{formatAddr(ordinalsAccount.address)}</span>
+            </div>
+          )}
+          {paymentAccount && (
+            <div className="flex items-center justify-between bg-white/5 border border-white/10 rounded-lg px-3 py-2">
+              <span className="text-gray-400">💰 Payment</span>
+              <span className="font-mono text-gray-300">{formatAddr(paymentAccount.address)}</span>
+            </div>
+          )}
+          {!ordinalsAccount && (
+            <div className="bg-red-500/10 border border-red-500/30 rounded-lg px-3 py-2 text-red-400">
+              ⚠️ No Taproot address found! Ordinals cannot be received.
+            </div>
+          )}
         </div>
       </div>
     );
