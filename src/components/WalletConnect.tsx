@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { useWallet } from '../contexts/WalletContext';
 
 export const WalletConnect: React.FC = () => {
-  const { walletState, connect, disconnect, isUnisatInstalled, isXverseInstalled } = useWallet();
+  const { walletState, connect, disconnect, isXverseInstalled } = useWallet();
   const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleConnect = async (walletType: 'unisat' | 'xverse') => {
+  const handleConnect = async () => {
     setIsConnecting(true);
     setError(null);
 
     try {
-      await connect(walletType);
+      await connect('xverse');
     } catch (err: any) {
       setError(err.message || 'Failed to connect wallet');
     } finally {
@@ -31,7 +31,7 @@ export const WalletConnect: React.FC = () => {
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
             <div>
-              <p className="text-xs text-gray-400">Connected via {walletState.walletType}</p>
+              <p className="text-xs text-gray-400">Connected via Xverse</p>
               <p className="text-sm font-mono text-white">{shortAddress}</p>
             </div>
           </div>
@@ -59,42 +59,9 @@ export const WalletConnect: React.FC = () => {
       )}
 
       <div className="space-y-3">
-        {/* UniSat Button */}
-        <button
-          onClick={() => handleConnect('unisat')}
-          disabled={isConnecting || !isUnisatInstalled}
-          className={`w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg font-semibold transition ${
-            !isUnisatInstalled
-              ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-              : 'btn-gradient'
-          }`}
-        >
-          {isConnecting ? (
-            <span className="animate-pulse">Connecting...</span>
-          ) : (
-            <>
-              <span>🦊</span>
-              <span>UniSat Wallet</span>
-            </>
-          )}
-        </button>
-        {!isUnisatInstalled && (
-          <p className="text-[10px] text-center text-gray-500">
-            UniSat not detected.{' '}
-            <a
-              href="https://unisat.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-hot-pink hover:underline"
-            >
-              Install UniSat
-            </a>
-          </p>
-        )}
-
         {/* Xverse Button */}
         <button
-          onClick={() => handleConnect('xverse')}
+          onClick={handleConnect}
           disabled={isConnecting || !isXverseInstalled}
           className={`w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg font-semibold transition ${
             !isXverseInstalled

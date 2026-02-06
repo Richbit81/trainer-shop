@@ -73,7 +73,7 @@ export const HomePage: React.FC = () => {
               💡 <span className="text-white font-semibold">How it works:</span>
             </p>
             <ol className="text-xs text-gray-500 space-y-1">
-              <li>1. Connect your UniSat or Xverse wallet</li>
+              <li>1. Connect your Xverse wallet</li>
               <li>2. Select a trainer and click "Mint Now"</li>
               <li>3. Choose your fee rate and confirm the payment</li>
               <li>4. Your delegate inscription is created on Bitcoin!</li>
