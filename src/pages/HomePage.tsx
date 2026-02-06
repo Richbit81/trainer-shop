@@ -48,12 +48,8 @@ export const HomePage: React.FC = () => {
             Trainer Series
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Exclusive interactive HTML Ordinals on Bitcoin.
+            Get the trainer and become the master. The trainer series are fun, casual games meant to add a little fun to the chain. So don't take it too seriously!
           </p>
-          <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-500">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            <span>Powered by UniSat API</span>
-          </div>
         </header>
 
         {/* Wallet Connect Section */}
