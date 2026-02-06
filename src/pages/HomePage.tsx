@@ -44,7 +44,7 @@ export const HomePage: React.FC = () => {
           <img 
             src="/title-logo.png" 
             alt="Trainer Shop" 
-            className="max-w-[200px] md:max-w-[250px] mx-auto mb-6"
+            className="max-w-[300px] md:max-w-[375px] mx-auto mb-6"
             style={{ filter: 'drop-shadow(0 0 20px rgba(255, 20, 147, 0.6)) drop-shadow(0 0 40px rgba(255, 105, 180, 0.4))' }}
           />
           <p className="text-lg max-w-2xl mx-auto" style={{ color: '#FF69B4' }}>
