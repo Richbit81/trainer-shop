@@ -44,9 +44,11 @@ export const HomePage: React.FC = () => {
           <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-hot-pink via-light-pink to-neon-blue mb-4 tracking-tight">
             TRAINER SHOP
           </h1>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            Trainer Series
+          </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Exclusive interactive HTML Ordinals on Bitcoin. Each trainer is a unique 
-            delegate inscription permanently stored on the blockchain.
+            Exclusive interactive HTML Ordinals on Bitcoin.
           </p>
           <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-500">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
