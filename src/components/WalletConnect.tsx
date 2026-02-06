@@ -6,13 +6,21 @@ export const WalletConnect: React.FC = () => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Debug log on render
+  console.log('[WalletConnect] Render - isXverseInstalled:', isXverseInstalled, 'connected:', walletState.connected);
+
   const handleConnect = async () => {
+    console.log('[WalletConnect] Button clicked!');
+    console.log('[WalletConnect] isXverseInstalled:', isXverseInstalled);
     setIsConnecting(true);
     setError(null);
 
     try {
+      console.log('[WalletConnect] Calling connect("xverse")...');
       await connect('xverse');
+      console.log('[WalletConnect] Connect successful!');
     } catch (err: any) {
+      console.error('[WalletConnect] Error:', err);
       setError(err.message || 'Failed to connect wallet');
     } finally {
       setIsConnecting(false);
