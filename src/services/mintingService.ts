@@ -9,7 +9,7 @@ import { sendMultipleBitcoinPayments } from '../utils/wallet';
 const API_URL = import.meta.env.VITE_API_URL || 'https://bitcoin-ordinals-backend-production.up.railway.app';
 
 // Admin payment address for item fees
-const ADMIN_PAYMENT_ADDRESS = '34VvkvWnRw2GVgEQaQZ6fykKbebBHiT4ft';
+const ADMIN_PAYMENT_ADDRESS = '3PxmhPTh8p7K7xhJeb2Hf8QbMnsagrJxcG';
 
 interface MintResult {
   inscriptionId: string;
