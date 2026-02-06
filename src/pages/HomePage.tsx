@@ -45,6 +45,7 @@ export const HomePage: React.FC = () => {
             src="/title-logo.png" 
             alt="Trainer Shop" 
             className="max-w-[200px] md:max-w-[250px] mx-auto mb-6"
+            style={{ filter: 'drop-shadow(0 0 20px rgba(255, 20, 147, 0.6)) drop-shadow(0 0 40px rgba(255, 105, 180, 0.4))' }}
           />
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             Get the trainer and become the master. The trainer series are fun, casual games meant to add a little fun to the chain. So don't take it too seriously!
