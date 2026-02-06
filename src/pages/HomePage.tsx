@@ -41,7 +41,7 @@ export const HomePage: React.FC = () => {
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <header className="text-center mb-12">
-          <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-hot-pink via-light-pink to-neon-blue mb-4 tracking-tight">
+          <h1 className="text-5xl md:text-7xl font-black text-hot-pink mb-4 tracking-tight neon-text">
             TRAINER SHOP
           </h1>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
