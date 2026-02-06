@@ -6,17 +6,17 @@ import { TrainerCard } from '../components/TrainerCard';
 // Die 3 Trainer-Ordinals
 const TRAINERS: TrainerItem[] = [
   {
-    id: 'cum-trainer',
-    name: 'Cum Trainer',
-    inscriptionId: 'c1eeef12fd60553d15b3b77afaa521d9b0382957e168333f5c28e70b225732b8i0',
-    description: 'Interactive HTML Ordinal - An exclusive training experience on Bitcoin.',
-    price: 5000, // 5,000 sats
-  },
-  {
     id: 'gag-trainer',
     name: 'Gag Trainer',
     inscriptionId: '217bb301e32c4dd77f9e0a193f76f941d466a28a22d632755f90fce27e47aeebi0',
     description: 'Interactive HTML Ordinal - Master the art with this unique trainer.',
+    price: 5000, // 5,000 sats
+  },
+  {
+    id: 'cum-trainer',
+    name: 'Cum Trainer',
+    inscriptionId: 'c1eeef12fd60553d15b3b77afaa521d9b0382957e168333f5c28e70b225732b8i0',
+    description: 'Interactive HTML Ordinal - An exclusive training experience on Bitcoin.',
     price: 5000, // 5,000 sats
   },
   {
