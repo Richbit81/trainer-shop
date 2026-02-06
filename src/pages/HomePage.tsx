@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { TrainerItem } from '../types';
 import { WalletConnect } from '../components/WalletConnect';
 import { TrainerCard } from '../components/TrainerCard';
+import { AdminPanel } from '../components/AdminPanel';
+import { useWallet } from '../contexts/WalletContext';
+import { isAdminAddress } from '../services/mintLogger';
 
 // Die 3 Trainer-Ordinals
 const TRAINERS: TrainerItem[] = [
@@ -29,6 +32,13 @@ const TRAINERS: TrainerItem[] = [
 ];
 
 export const HomePage: React.FC = () => {
+  const { walletState } = useWallet();
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+
+  // Check if any connected address is admin
+  const adminAddress = walletState.accounts.find(acc => isAdminAddress(acc.address))?.address;
+  const isAdmin = !!adminAddress;
+
   return (
     <div className="min-h-screen">
       {/* Background Effects */}
@@ -38,7 +48,27 @@ export const HomePage: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-hot-pink/10 to-neon-blue/10 rounded-full blur-[150px]" />
       </div>
 
+      {/* Admin Panel Modal */}
+      {showAdminPanel && adminAddress && (
+        <AdminPanel 
+          adminAddress={adminAddress} 
+          onClose={() => setShowAdminPanel(false)} 
+        />
+      )}
+
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-6xl">
+        {/* Admin Button */}
+        {isAdmin && (
+          <div className="fixed top-4 right-4 z-40">
+            <button
+              onClick={() => setShowAdminPanel(true)}
+              className="px-4 py-2 bg-gradient-to-r from-hot-pink to-dodger-blue text-white font-bold rounded-lg shadow-lg hover:shadow-neon-glow transition"
+            >
+              🔐 Admin
+            </button>
+          </div>
+        )}
+
         {/* Header */}
         <header className="text-center mb-12">
           <img 

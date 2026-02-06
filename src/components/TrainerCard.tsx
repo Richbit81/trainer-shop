@@ -5,6 +5,7 @@ import { FeeRateSelector } from './FeeRateSelector';
 import { MintingProgress } from './MintingProgress';
 import { mintTrainerDelegate } from '../services/mintingService';
 import { formatSats } from '../services/bitcoinFees';
+import { logMint } from '../services/mintLogger';
 
 interface TrainerCardProps {
   trainer: TrainerItem;
@@ -69,6 +70,15 @@ export const TrainerCard: React.FC<TrainerCardProps> = ({ trainer }) => {
         inscriptionId: result.inscriptionId,
         txid: result.txid,
         paymentTxid: result.paymentTxid,
+      });
+
+      // Log the mint for admin tracking
+      await logMint({
+        minterAddress: recipientAddress,
+        trainerName: trainer.name,
+        inscriptionId: result.inscriptionId,
+        txid: result.paymentTxid || result.txid,
+        price: trainer.price,
       });
 
     } catch (error: any) {
