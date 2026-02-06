@@ -22,8 +22,10 @@ export const isUnisatInstalled = (): boolean => {
 };
 
 export const isXverseInstalled = (): boolean => {
-  if (typeof window === 'undefined') return false;
-  return typeof (window as any).BitcoinProvider !== 'undefined';
+  // sats-connect handles wallet detection internally
+  // Always return true and let sats-connect handle the connection
+  // If no wallet is installed, it will show an error or prompt to install
+  return true;
 };
 
 export const connectUnisat = async (): Promise<WalletAccount[]> => {
@@ -59,11 +61,6 @@ export const connectUnisat = async (): Promise<WalletAccount[]> => {
 
 export const connectXverse = async (): Promise<WalletAccount[]> => {
   console.log('[Xverse] Starting connection...');
-  
-  if (!isXverseInstalled()) {
-    console.error('[Xverse] Not installed!');
-    throw new Error('Xverse Wallet is not installed. Please install the Xverse browser extension.');
-  }
 
   try {
     console.log('[Xverse] Importing sats-connect...');
