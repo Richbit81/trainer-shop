@@ -35,9 +35,20 @@ export const TrainerCard: React.FC<TrainerCardProps> = ({ trainer }) => {
     });
 
     try {
-      // Get recipient address (Taproot preferred for Ordinals)
+      // Get recipient address - MUST be Taproot (bc1p...) for Ordinals
       const ordinalsAccount = walletState.accounts.find(acc => acc.purpose === 'ordinals');
-      const recipientAddress = ordinalsAccount?.address || walletState.accounts[0].address;
+      const taprootAccount = walletState.accounts.find(acc => acc.address.startsWith('bc1p'));
+      
+      // Prioritize: 1. ordinals purpose, 2. any bc1p address, 3. fallback
+      const recipientAddress = ordinalsAccount?.address || taprootAccount?.address || walletState.accounts[0].address;
+      
+      console.log('[TrainerCard] Recipient address:', recipientAddress);
+      console.log('[TrainerCard] All accounts:', walletState.accounts);
+      
+      // Warn if not Taproot
+      if (!recipientAddress.startsWith('bc1p')) {
+        console.warn('[TrainerCard] WARNING: Recipient is not a Taproot address!', recipientAddress);
+      }
 
       setMintingStatus({
         status: 'processing',
